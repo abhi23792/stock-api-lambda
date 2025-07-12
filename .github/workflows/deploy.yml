@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: src
+        working-directory: src/StockPicker.Lambda
 
     steps:
       - name: Checkout code
@@ -31,7 +31,7 @@ jobs:
       - name: Restore and Build
         run: |
           dotnet restore
-          dotnet publish -c Release -o ./bin/Release/net8.0/publish
+          dotnet publish -c Release -o ./bin/Release/net8.0/publish -p:PublishReadyToRun=true
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -46,8 +46,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t lambda-dotnet .
-          docker tag lambda-dotnet:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+          docker build -t stock-picker-lambda .
+          docker tag stock-picker-lambda:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
 
       - name: Update Lambda Function
