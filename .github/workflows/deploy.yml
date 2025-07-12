@@ -1,4 +1,4 @@
-name: Deploy .NET Lambda Container
+name: Deploy .NET Lambda Container on AWS ECR
 
 on:
   push:
