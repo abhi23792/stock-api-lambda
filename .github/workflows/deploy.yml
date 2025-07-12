@@ -31,7 +31,7 @@ jobs:
       - name: Restore and Build
         run: |
           dotnet restore
-          dotnet publish -c Release -o ./bin/Release/net8.0/publish -p:PublishReadyToRun=true
+          dotnet publish -c Release -o ./bin/Release/net8.0/publish -p:PublishReadyToRun=false
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
