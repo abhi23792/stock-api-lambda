@@ -52,4 +52,4 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
-/src/.vs/
+/src/StockPicker.Lambda/.vs/
