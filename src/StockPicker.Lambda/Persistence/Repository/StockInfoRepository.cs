@@ -1,4 +1,5 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 using StockPicker.Lambda.Persistence.Models;
 
 namespace StockPicker.Lambda.Persistence.Repository
@@ -12,9 +13,14 @@ namespace StockPicker.Lambda.Persistence.Repository
             _context = context;
         }
 
-        public async Task<StockInfo?> GetStockInfoAsync(string uuid)
+        public async Task<List<StockInfo>> GetStockInfoByStockCodeAsync(string stockCode)
         {
-            var result = await _context.LoadAsync<StockInfo>(uuid);
+            var conditions = new List<ScanCondition>
+            {
+                new ScanCondition("StockCode", ScanOperator.Equal, stockCode)
+            };
+
+            var result = await _context.ScanAsync<StockInfo>(conditions).GetRemainingAsync();
             return result;
         }
 

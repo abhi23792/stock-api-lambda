@@ -6,7 +6,7 @@ namespace StockPicker.Lambda.Persistence.Models
     public class StockInfo
     {
         [DynamoDBHashKey]
-        public required string DateInserted { get; set; }
+        public required string Uuid { get; set; }
 
         [DynamoDBProperty]
         public string StockCode { get; set; }
@@ -24,6 +24,6 @@ namespace StockPicker.Lambda.Persistence.Models
         public decimal ClosePrice { get; set; }        
 
         [DynamoDBProperty]
-        public DateTime DateUpdated { get; set; }
+        public DateTime DateInserted { get; set; }
     }
 }

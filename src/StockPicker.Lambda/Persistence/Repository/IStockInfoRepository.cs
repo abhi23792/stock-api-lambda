@@ -4,7 +4,7 @@ namespace StockPicker.Lambda.Persistence.Repository
 {
     public interface IStockInfoRepository
     {
-        Task<StockInfo?> GetStockInfoAsync(string uuid);
+        Task<List<StockInfo>> GetStockInfoByStockCodeAsync(string stockCode);
 
         Task UpdateStockInfoAsync(StockInfo stockInfo);
     }
