@@ -26,7 +26,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: lambda-publish
-          path: ./bin/Release/net8.0/publish
+          path: src/StockPicker.Lambda/artifacts
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
