@@ -32,7 +32,7 @@ jobs:
           dotnet publish -c Release -o ./bin/Release/net8.0/publish -p:PublishReadyToRun=false
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: lambda-publish
           path: src/StockPicker.Lambda/bin/Release/net8.0/publish
