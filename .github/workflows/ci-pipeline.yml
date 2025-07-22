@@ -2,7 +2,7 @@ name: Build .NET Lambda Container
 
 on:
   pull_request:
-    branches: [main]
+    branches: main
 
 permissions:
   contents: read
@@ -29,10 +29,11 @@ jobs:
       - name: Restore and Build
         run: |
           dotnet restore
-          dotnet publish -c Release -o ./bin/Release/net8.0/publish -p:PublishReadyToRun=false
+          dotnet publish -c Release -o src/StockPicker.Lambda/artifacts -p:PublishReadyToRun=false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: lambda-publish
-          path: src/StockPicker.Lambda/bin/Release/net8.0/publish
+          path: src/StockPicker.Lambda/artifacts
+          overwrite: true
